@@ -1,2 +1,3 @@
 <center><span>Здравствуйте, <%= current_user.email %></span>
     <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    <p/><%= link_to 'Изменить пароль', edit_user_registration_path %>
