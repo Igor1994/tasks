@@ -1,3 +1,18 @@
-<center><span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    <p/><%= link_to 'Изменить пароль', edit_user_registration_path %>
+
+<div class="well text-center">
+	<p>
+		<h3/><%= current_user.email %>
+		<div class="btn-group">
+   			<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+   				Действия
+   			<span class="caret"></span>
+   			</a>
+   			<ul class="dropdown-menu">
+    			<li><%= link_to 'Изменить пароль', edit_user_registration_path, :method => :get %>
+    			<li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    		</ul>
+    	</div>
+	</p>
+</div>
+
+

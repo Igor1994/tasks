@@ -1,7 +1,7 @@
-<% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    <%= link_to 'Мой профиль', user_root_path %>
-<% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-<% end %>
+<div class="well text-center">
+	<% if user_signed_in? %>
+    	<span><h2 style="color: #01796f">Здравствуйте, <%= current_user.email %></span>
+		<% else %>
+    	<span><h2>Пожалуйста, войдите или зарегистрируйтесь.</span>
+	<% end %>
+</div>
