@@ -1,0 +1,35 @@
+<div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="text-center">
+              <% if @user.avatar_file_size != nil%><%= image_tag @user.avatar.url(:thumb) %><%end%>
+              
+              <h1><%= @user.nickname %>&#39s page</h1>
+
+            <% if @friends.all? {|f| f.id != @user.id} and @inverse_friends.all? {|i| i.id != @user.id} %>
+              <%= button_to "Добавить в друзья", friendships_create_path(friend_id: @user), :class => "btn btn-info", method: :post%>
+            <%end%> 
+          </div>
+        </div>
+
+        <div id="wall" class="col-lg-7" >
+            <%= render 'user' %>
+        </div>
+        <div class="col-lg-7 pull-right">
+          <%= form_for @user.user_messages.new, remote: true, url: user_user_messages_path(current_user), :html => { :multipart => true }, method: :post do |f| %>
+            <p/><div> <%= f.label :text, "Текст сообщения"%><br>
+            <%= f.text_area :text , :style => "width: 650px; height: 100px" %>
+          
+            </div>
+            <p><%= f.label :picture, "Прикрепить изображение", :for => "user_message_picture", :class => "btn btn-info"%>
+              <%= f.file_field :picture, style: "display: none"%></p>
+
+            <%= f.hidden_field :user_id %>
+
+            <div><%= f.submit "Создать", :class => "btn btn-success" %></div>
+          <% end %>
+        </div>
+        
+      </div>
+      <p/>
+</div>              

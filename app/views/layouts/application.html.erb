@@ -47,12 +47,14 @@
         </button>
         <a class="navbar-brand" href="http://localhost:3000/">ProjectForTasks</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav" style="float: right">
             <% if user_signed_in? %>
-    			   <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    			   <li><%= link_to 'Мой профиль', user_root_path %>
 
+             <li><%= link_to 'Моя страница ' + '(' + current_user.nickname + ')', user_root_path %>
+    			   <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+    			   
 			       <% else %>
+
     			     <li><%= link_to 'Войти', new_user_session_path %> 
     			     <li><%= link_to 'Зарегистрироваться', new_user_registration_path %>
 
@@ -64,7 +66,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-13">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>

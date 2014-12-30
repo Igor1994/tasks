@@ -3,12 +3,32 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  post 'persons/create'
+
+  get 'persons/create_message'
+
+  post 'user_messages/create'
+
+  get 'users/index/:id', to: 'users#index', as: 'user'  
+
+  post 'friendships/create'
+
+  delete 'friendships/destroy'
+
+  put 'persons/update'
+
+  get 'persons/avatar_update'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
+  resources :user do
+    resources :user_messages
+  end
 
   root to: "home#index"
 

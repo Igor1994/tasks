@@ -1,10 +1,13 @@
 <h2>Регистрация</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
   <div class="well">
   	<div><%= f.label :email %><br />
   	<%= f.email_field :email, autofocus: true %></div>
+
+    <p/><div><%= f.label :nickname, "Никнейм" %><br />
+    <%= f.text_field :nickname %></div>
 
   	<p/><div><%= f.label :password, "Пароль" %> <% if @validatable %><i>(минимум <%= @minimum_password_length %> символов)</i><% end %><br />
     	<%= f.password_field :password, autocomplete: "off" %></div>
@@ -12,7 +15,11 @@
   	<p/><div><%= f.label :password_confirmation, "Подтвердите пароль" %><br />
     	<%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+    <p/><div><%= f.label :avatar, "Аватар", :for => "user_avatar", :class => "btn btn-info"%>
+      <%= f.file_field :avatar, :style => "display: none" %></div>
+
   	<p/><div><%= f.submit "Создать аккаунт", :class => "btn btn-success" %></div>
+
   </div>
 <% end %>
 

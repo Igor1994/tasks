@@ -1,0 +1,8 @@
+<% if user_message.poster %>
+	<h3><%= image_tag user_message.poster.avatar.url(:little) %>  <%= user_message.poster.nickname %></h3> 
+<%else%>
+	<h4><font color="red">Аккаунт пользователя удален</font></h4>
+<%end%>
+<div class="well"><p style="font-size: 16px; overflow: hidden"><%= user_message.text %></p>
+   <% if user_message.picture_file_size != nil%><%= image_tag user_message.picture.url(:medium)%><%end%>
+ <p/><p style="font-size: 11px"><%= time_ago_in_words(user_message.created_at) %> ago</p></div>

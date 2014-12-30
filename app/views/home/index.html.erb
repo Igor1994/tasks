@@ -1,7 +1,16 @@
-<div class="well text-center">
+<div>
 	<% if user_signed_in? %>
-    	<span><h2 style="color: #01796f">Здравствуйте, <%= current_user.email %></span>
-		<% else %>
-    	<span><h2>Пожалуйста, войдите или зарегистрируйтесь.</span>
+		<% @messages.each do |m| %>
+			<% if m.user_id == m.poster_id %>
+				<% if @friends.any? {|f| f.id == m.user_id} or @inverse_friends.any? {|i| i.id == m.user_id} %>
+    			<div class="col-lg-7">
+    				<h2><%= m.poster.nickname%></h2>
+    				<%= render m %>
+    			</div>
+    		<%end%>
+    	<%end%>
+    <%end%>
+	<% else %>
+    <span><h2>Пожалуйста, войдите или зарегистрируйтесь.</span>
 	<% end %>
 </div>

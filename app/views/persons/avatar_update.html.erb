@@ -1,0 +1,11 @@
+<%= form_for :avatar, url: persons_update_path, method: :put, :html => { :multipart => true } do |f| %>
+  
+  <div class="well">
+  	
+    <p/><div><%= f.label :avatar, "Обзор", :for => "avatar_avatar", :class => "btn btn-info"%>
+      <%= f.file_field :avatar, :style => "display: none" %></div>
+
+  	<p/><div><%= f.submit "Изменить", :class => "btn btn-success" %></div>
+
+  </div>
+<% end %>
