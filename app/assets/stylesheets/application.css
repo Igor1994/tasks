@@ -13,3 +13,173 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-inverse{
+	background-color: #8FBC8F;
+	border-color: #8FBC8F;
+}
+
+.navbar-inverse .navbar-nav li a{
+	color: #111;
+}
+
+.navbar-inverse .navbar-brand{
+	color: #111;
+}
+
+.well{
+	background-color: #f2ffe8;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+
+.main-menu{
+	height: 590px;
+	background-color: RGBA(143,188,143,0.15);
+	padding-left: 20px;
+	padding-top: 15px;
+	font-size: 12pt; 
+}
+
+.main-menu-field{
+	position: fixed;
+	border-right: 3px solid #8FBC8F;
+}
+
+.return-to-top{
+	display: none;
+	margin-top: -80px;
+	padding-right: 0px;
+	position: fixed;
+}
+
+#click-to-return{
+	height: 50px;
+	background-color: #E6E6FA;
+	opacity: 0.2;
+}
+
+#click-to-return h3 {
+	padding-top: 10px;
+}
+
+.btn-attach{
+	color: #333;
+	background-color: #e3ffd8;
+	border-color: #e3ffd8;
+}
+
+.btn-success{
+	background-color: #8FBC8F;
+	border-color: #8FBC8F;
+}
+
+.menu-link{
+	color: #333;
+}
+
+.hosted-groups{
+	border-bottom: 2px solid #8FBC8F;
+}
+
+label{
+	font-weight: normal;
+}
+
+body{
+	background-color: #fcffe8;
+}
+
+.well h4{
+	padding-bottom: 5px;
+	border-bottom: 1px solid #8FBC8F; 
+}
+
+.well a{
+	color: #333;
+}
+
+.group-info .container{
+	width: 850px;
+	margin-right: 25px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 5px;
+	border-bottom: 2px solid #8FBC8F;	
+}
+
+.group-info .container .col-lg-6{
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 5px;	
+}
+
+.groups-search-form{
+	
+}
+
+.create-message-form{
+	display: none;
+}
+
+#show-create-message-form{
+	background-color: #e3ffd8;
+	opacity: 0.5;
+	padding: 10px;
+}
+
+#show-create-message-form h4{
+	margin: 0px;
+}
+
+.groups-search{
+	padding: 5px;
+	border-bottom: 2px solid #8FBC8F;
+}
+
+#results{
+	text-align: left;
+}
+
+.user-avatar{
+	border-radius: 5px;
+}
+
+.user-message-data{
+	width: inherit;
+	margin-top: 20px;
+}
+
+.user-message-data .col-lg-4{
+	padding: 0px;
+}
+
+.comment{
+	width: inherit;
+	padding-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid RGBA(143,188,143,0.5);
+	background-color: RGBA(143,188,143,0.25); 
+	border-radius: 4px;
+}
+
+.comment-field{
+	display: none;
+	margin-top: 5px;
+	border-left: 1px solid #8FBC8F;
+}
+
+.user-info-in-comment{
+	margin-bottom: 5px;	
+	padding-left: 0px;
+}
+
+.comment-text{
+	padding: 5px;
+}
+
+.user-message-text{
+	font-size: 14px; 
+	overflow: hidden;
+	padding: 10px;
+}

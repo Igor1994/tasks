@@ -34,6 +34,17 @@ gem "twitter-bootstrap-rails"
 gem "pry"
 gem "paperclip"
 gem 'remotipart'
+
+gem 'omniauth-facebook'
+
+gem 'simple_hashtag'
+
+gem 'haml'
+gem "haml-rails", "~> 0.9"
+
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

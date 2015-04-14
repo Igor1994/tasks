@@ -1,0 +1,16 @@
+= render '/persons/main_menu'
+.col-lg-9.pull-right
+ = form_for :group, url: groups_create_path, method: :post do |f|
+  
+  %p
+   = f.label :name, "Название"
+   %p
+    = f.text_field :name
+  
+  %p
+   = f.label :description, "Описание группы"
+   %p
+    = f.text_area :description,  :style => "width: 650px; height: 100px"
+  
+  %p
+   = f.submit "Создать", :class => "btn btn-success"

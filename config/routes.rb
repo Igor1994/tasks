@@ -1,4 +1,50 @@
 Rails.application.routes.draw do
+
+  post 'user_messages/create_comment'
+
+  get 'user_messages/show_comments'
+
+  get 'user_messages/close_comments'
+
+  post 'groups/search'
+
+  get 'groups/search_groups'
+
+  get 'groups/index'
+
+  post 'groups/create'
+
+  get 'groups/create_new'
+
+  get 'group/:id', to: 'groups#show'
+
+  post 'group_memberships/create'
+
+  delete 'group_memberships/destroy'
+
+  get 'searches/index'
+
+  post 'searches/show'
+
+  post 'persons/change_page'
+
+  post 'home/menu'
+
+  get 'user_search/index'
+
+  post 'user_search/create'
+
+  get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
+  get "hashtags",            to: "hashtags#index",     as: :hashtags
+  
+  delete 'likes/destroy'
+
+  post 'likes/create' 
+
+  get 'images/index'
+
+  get 'home/cosmo_home'
+
   get 'persons/profile', as: 'user_root' 
 
   get 'home/index'
@@ -10,6 +56,8 @@ Rails.application.routes.draw do
   post 'user_messages/create'
 
   get 'users/index/:id', to: 'users#index', as: 'user'  
+
+  post 'users/change_page'
 
   post 'friendships/create'
 

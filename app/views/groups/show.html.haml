@@ -1,0 +1,14 @@
+= render '/persons/main_menu'
+.col-lg-9.pull-right
+	.group-info	
+		%h3
+			.container
+				.col-lg-6
+					= @group.name
+				.col-lg-6.pull-right.text-right
+					- if (current_user.joined_in_groups.all? {|g| g.id != @group.id} and current_user.hosted_groups.all? {|g| g.id != @group.id}) 
+						= button_to 'Присоединиться', group_memberships_create_path(id: @group), method: :post, class: "btn btn-success btn-sm"
+					- else
+						= button_to 'Покинуть сообщество', group_memberships_destroy_path(id: @group.id), method: :delete, class: "btn btn-success btn-sm"
+		%h4
+			= @group.description

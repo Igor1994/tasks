@@ -1,0 +1,6 @@
+.container.comment
+	.col-lg-2
+		= image_tag comment.poster.avatar.url(:little), class: "user-avatar"
+		= link_to comment.poster.nickname, "/users/index/#{comment.poster.id}"
+	.col-lg-10
+		= comment.text

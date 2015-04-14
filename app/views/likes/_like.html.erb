@@ -1,0 +1,7 @@
+<p>
+	<% if current_user.likes.all? {|l| l.liked_message_id != user_message.id} %>
+  			<%= link_to "like", likes_create_path(id: user_message), method: :post, remote: true%> <%=user_message.likes.count%>
+   <%else%>
+  	 		<%= link_to "unlike", likes_destroy_path(id: user_message), method: :delete, remote: true%> <%=user_message.likes.count%>
+   <%end%>
+</p>

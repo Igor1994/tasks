@@ -1,0 +1,86 @@
+<head>
+	<style type='text/css'>
+
+		@media screen and (max-width: 1080px) {
+			#body{
+				background-image: url('/assets/bg.gif');
+				background-attachment: scroll;
+			}
+
+			#article-text{
+				display: none;
+			}
+
+			#logo{
+				display: none;
+			}
+		}
+
+		body{
+			background-image: url('/assets/background.jpg');
+			background-attachment: fixed; 
+			background-size: 100%;
+		}
+
+		.article{
+			background: #FFFFFF;
+			border-radius: 15px;
+			margin-top: 35%;
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-bottom: 20px;
+			padding: 15px; 
+		}
+
+		#logo{
+			position: absolute;
+			margin-left: 65%;
+		}
+
+		#menu{
+			position: absolute;
+			display: none;
+			color: silver;
+			margin-left: 40px;
+		}
+
+		#menu h4{
+			margin-left: 20px;
+		}
+
+		#menu-sign{
+			margin-left: 20px;
+		}
+
+		#flash{
+			width: 300px;
+			height: 200px;
+		}
+
+	</style>
+</head>
+
+<body id="body">
+	<div id="logo">
+		<embed src="<%= asset_path('cosmoflash.swf') %>" id="flash">
+	</div>
+	<div>
+		<h3 id="menu-sign"><font color="silver">Меню <%= link_to (image_tag "arrow_down.jpeg", size: "10x10"), home_menu_path, method: :post, remote: true%></font></h3>
+		<div id="menu">
+			<font face="arial">
+				<h3><%= image_tag "but_fish.png", alt: "Ups", size: "30x30" %>главная</h3>
+				<p><h4><%= image_tag "but_fish.png", alt: "Ups", size: "30x30" %>архив</h4></p>
+				<p><h4><%= image_tag "but_fish.png", alt: "Ups", size: "30x30" %>избранное</h4></p>
+			</font>
+	</div>
+	</div>
+	<div class="col-lg-8 article" id="article-text">
+		<h1>Hi</h1>
+	</div>
+	<div class="col-lg-3 article" >
+		<div class="text-center">
+			<%= image_tag current_user.avatar.url(:thumb) %>
+			<p><h1><%= link_to current_user.nickname, "/users/index/#{current_user.id}" %></h1></p>
+		</div>
+	</div>
+</body>

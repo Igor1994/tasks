@@ -1,1 +1,1 @@
-$("<%= escape_javascript(render @message) %>").appendTo("#wall");
+$("#wall").prepend("<%= escape_javascript(render @message) %>");

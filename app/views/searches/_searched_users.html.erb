@@ -1,0 +1,13 @@
+<% users.each do |u| %>
+	
+	<p/>
+
+	<div class="col-lg-12">
+
+		<div class="col-lg-12">
+			<h3><%= link_to u.nickname, "/users/index/#{u.id}"%></h3>
+		</div>
+
+	</div>
+
+<%end%>

@@ -1,0 +1,9 @@
+.groups-search-form.text-center
+	= form_for :search, url: groups_search_path, remote: true, method: :post do |f|
+		= f.text_field :text, id: 'field'
+		= f.submit "Поиск", :class => "btn btn-success btn-sm", id: 'search'
+
+%script
+
+	$("#field").on("input", function(){$("#search").trigger("click");});
+	

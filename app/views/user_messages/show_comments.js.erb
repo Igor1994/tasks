@@ -1,0 +1,2 @@
+$("#comment_field_<%=@commented_message_id%>").html("<%= j render partial: '/user_messages/show_comments', locals: {comments: @comments, commented_message_id: @commented_message_id}%>");
+$("#comment_field_<%=@commented_message_id%>").slideDown("slow");

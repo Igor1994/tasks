@@ -1,21 +1,20 @@
 class PersonsController < ApplicationController
 
+  before_action :set_page_number, only: [:profile]
+
   def profile
-    @messages = current_user.user_messages
+
     @friendships = current_user.friendships
-    @inverse_friends = current_user.inverse_friends
-    # @mess = @messages.last
+    @inverse_friendships = current_user.inverse_friendships
+
   end
 
-  def create
-  	@message = UserMessage.new(message_params)
-    # @message.user_name = current_user.nickname
+  # def create
+  # 	@message = UserMessage.new(message_params)
 
-  	@message.save
-
-    # redirect_to '/persons/profile'
+  # 	@message.save
     
-  end
+  # end
 
   def update
     current_user.update(avatar_params)
@@ -28,6 +27,24 @@ class PersonsController < ApplicationController
   end
 
   def create_message
+
+  end
+
+  def change_page
+
+    @user = current_user
+
+    
+    @user.page_number = @user.page_number + 1
+    @user.save
+
+  end
+
+  def set_page_number
+
+    current_user.page_number = 1
+    current_user.save
+    
   end
 
   private

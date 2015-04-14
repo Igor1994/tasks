@@ -1,8 +1,32 @@
 <% if user_message.poster %>
-	<h3><%= image_tag user_message.poster.avatar.url(:little) %>  <%= user_message.poster.nickname %></h3> 
+	<h3><%= image_tag user_message.poster.avatar.url(:little), class: "user-avatar" %>   <%= link_to user_message.poster.nickname, "/users/index/#{user_message.poster.id}" %></h3> 
 <%else%>
-	<h4><font color="red">Аккаунт пользователя удален</font></h4>
+	<h4>Аккаунт пользователя удален</h4>
 <%end%>
-<div class="well"><p style="font-size: 16px; overflow: hidden"><%= user_message.text %></p>
-   <% if user_message.picture_file_size != nil%><%= image_tag user_message.picture.url(:medium)%><%end%>
- <p/><p style="font-size: 11px"><%= time_ago_in_words(user_message.created_at) %> ago</p></div>
+<div class="well">
+	<div class="user-message-text">
+		<%= user_message.text %>
+	</div>
+   <% if user_message.picture_file_size != nil%>
+   	<%= link_to (image_tag user_message.picture.url(:medium)), images_index_path(id: user_message)%>
+   <%end%>
+ 	<p/>
+
+ 	<div class="container user-message-data">
+  <div class="col-lg-4" style="font-size: 11px">
+  	<%= time_ago_in_words(user_message.created_at) %> 	ago
+  </div>
+
+  <div class="col-lg-4 text-center link-to-comments">
+  	<%= link_to "Комментарии", user_messages_show_comments_path(id: user_message), remote: true %>
+	</div>
+
+  <div class="col-lg-4 text-right" id="like_<%=user_message.id%>">
+		<%= render partial: '/likes/like', locals: {user_message: user_message} %>
+	</div>
+
+	<div class="col-lg-11 pull-right comment-field" id="comment_field_<%=user_message.id%>">
+
+	</div>
+	</div>
+</div>

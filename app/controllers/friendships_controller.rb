@@ -5,13 +5,13 @@ class FriendshipsController < ApplicationController
 
 		@friendship.save
 
-		redirect_to :user_root
+		redirect_to :back
 	end
 
 	def destroy
-		@friendship = current_user.friendships.find(params[:id])
+		@friendship = Friendship.find(params[:id])
 		@friendship.destroy
 
-		redirect_to :user_root
+		redirect_to :back
 	end
 end

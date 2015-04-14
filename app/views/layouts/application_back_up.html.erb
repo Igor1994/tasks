@@ -45,18 +45,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="http://localhost:3000/">ProjectForTasks</a>
+        <a class="navbar-brand" href="http://localhost:3000/">Домашняя страница</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav" style="float: right">
             <% if user_signed_in? %>
 
              <li><%= link_to 'Моя страница ' + '(' + current_user.nickname + ')', user_root_path %>
     			   <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-    			   
+    			   <li><%= link_to 'Назад', :back %>
+
 			       <% else %>
 
     			     <li><%= link_to 'Войти', new_user_session_path %> 
     			     <li><%= link_to 'Зарегистрироваться', new_user_registration_path %>
+               <li><%= link_to 'Назад', :back %>
 
 			       <% end %>
           </ul>
@@ -85,5 +87,26 @@
 
     </div> <!-- /container -->
 
+    <script>
+    
+      // $( window ).scroll(function() {
+
+      //   if ($(window).scrollTop() >= 50) {
+      //     $(".return-to-top").show();
+      //   }
+      //   else {$(".return-to-top").hide();}
+
+      //   if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
+      //     $("#page").trigger("click");
+      //   }
+      // });
+
+      // $(".return-to-top").click(function(){
+      //   $(window).scrollTop(0);
+      //   $(".return-to-top").hide();
+      // });
+
+
+    </script>
   </body>
 </html>

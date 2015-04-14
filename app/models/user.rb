@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :nickname, uniqueness: true
 
   has_many :user_messages
   has_many :posted_messages, class_name: "UserMessage", foreign_key: :poster_id
@@ -16,4 +17,12 @@ class User < ActiveRecord::Base
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
   has_many :inverse_friends, through: :inverse_friendships, source: :user
+
+  has_many :likes, foreign_key: :liker_id
+  has_many :liked_messages, through: :likes
+
+  has_many :hosted_groups, class_name: 'Group', foreign_key: :host_user_id
+  has_many :group_memberships, foreign_key: :member_id
+  has_many :joined_in_groups, through: :group_memberships
+
 end

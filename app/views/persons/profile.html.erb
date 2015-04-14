@@ -1,12 +1,14 @@
-<div class="container">
+<body>
+  <%= render '/persons/main_menu'%>
+  <div class="container col-lg-10 pull-right">
       <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-3">
           <div class="text-center">
-              <% if current_user.avatar_file_size != nil%><%= image_tag current_user.avatar.url(:thumb) %><%end%>
+              <% if current_user.avatar_file_size != nil%><%= image_tag current_user.avatar.url(:thumb), class: "user-avatar" %><%end%>
               
               <h1><%= current_user.nickname %>
               <div class="btn-group">
-                  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                  <a class="btn btn-sm dropdown-toggle" data-toggle="dropdown" href="#">
                    Действия
                   <span class="caret"></span>
                   </a>
@@ -18,47 +20,70 @@
               </div>
               </h1>
 
-              <p/><div class="pull-center">
-              <div class="well">
-                <h2>Друзья</h2>
-                <p><h3>Вы добавили</h3></p>
-                <p><% @friendships.each do |f|%>
-                      <h4><p>
-                        <%= link_to f.friend.nickname, "/users/index/#{f.friend.id}"%>
-                        (<%= link_to "удалить", friendships_destroy_path(id: f), method: :delete %>)
-                      </h4></p>
+              <div class="pull-center" hidden>
+                <h3>Друзья</h3>
+                <div class="row">
+                <div class="col-md-6">
+                  <table class="table table-striped">
+                    <tr><td><h4>Вы добавили</span></h4></td></tr>
+                    <% @friendships.each do |f|%>
+                          <tr><td><h4><%= link_to f.friend.nickname, "/users/index/#{f.friend.id}"%> <%= link_to (image_tag "red_cross.png", alt: "Ups", size: "10x10"), friendships_destroy_path(id: f), method: :delete %></h4></td></tr>
+                        <% end %>
+                  </table>
+                </div>
+                <div class="col-lg-6">
+                  <table class="table table-striped">
+                    <tr><td><h4>Вас добавили</h4></td></tr>
+                    <% @inverse_friendships.each do |f|%>
+                          <tr><td><h4><%= link_to f.user.nickname, "/users/index/#{f.user.id}"%> <%= link_to (image_tag "red_cross.png", alt: "Ups", size: "10x10"), friendships_destroy_path(id: f), method: :delete %></h4></h4></td></tr>
                     <% end %>
-                </p>
-                <p><h3>Вас добавили</h3></p>
-                <p><% @inverse_friends.each do |f|%>
-                      <h4/><p/><%= link_to f.nickname, "/users/index/#{f.id}"%>
-                    <% end %>
+                  </table>
+                </div>
                 </div>
               </div>
           </div>
         </div>
 
-        <div id="wall" class="col-lg-7" >
-            <%= render 'person' %>
+        <div class="col-lg-8 pull-right">
+
+          <div class="personal-info">
+
+          <div>
+
+          <div class="create-message-form">
+            <%= form_for current_user.user_messages.new, remote: true, url: user_user_messages_path(current_user), :html => { :multipart => true }, method: :post do |f| %>
+              <p/><div>
+              <%= f.text_area :text , :style => "width: 650px; height: 100px" %>
+            
+              </div>
+              <p><%= f.label :picture, "Прикрепить изображение", :for => "user_message_picture", :class => "btn btn-attach"%>
+                <%= f.file_field :picture, style: "display: none"%></p>
+
+              <%= f.hidden_field :user_id %>
+
+              <div><%= f.submit "Создать", :class => "btn btn-success" %></div>
+            <% end %>
+          </div>
+
+          <div id="show-create-message-form" class="text-center">
+            <h4>Создать сообщение</h4>
+          </div>
+
         </div>
-        <div class="col-lg-7 pull-right">
-          <%= form_for current_user.user_messages.new, remote: true, url: user_user_messages_path(current_user), :html => { :multipart => true }, method: :post do |f| %>
-            <p/><div> <%= f.label :text, "Текст сообщения"%><br>
-            <%= f.text_area :text , :style => "width: 650px; height: 100px" %>
-          
-            </div>
-            <p><%= f.label :picture, "Прикрепить изображение", :for => "user_message_picture", :class => "btn btn-info"%>
-              <%= f.file_field :picture, style: "display: none"%></p>
 
-            <%= f.hidden_field :user_id %>
+        <div id="wall" class="col-lg-8 pull-right" >
+            <%= render current_user.user_messages.reverse_order.first %>
+            <%= render partial: 'person', locals: {page: 1}%>
+        </div>
 
-            <div><%= f.submit "Создать", :class => "btn btn-success" %></div>
-          <% end %>
+        <div class="col-lg-8 pull-right text-center">
+          <%= link_to "next", persons_change_page_path, remote: true, method: :post, id: "page" %>
         </div>
         
       </div>
       <p/>
-</div>
+  </div>
 
+</body>
 
 

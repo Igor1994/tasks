@@ -1,0 +1,26 @@
+= render '/persons/main_menu'
+.col-lg-9.pull-right
+	.groups-search.text-right
+		= button_to 'Поиск', groups_search_groups_path, remote: true, method: :get, class: "btn btn-success btn-sm", data: {toggle: "modal", target: "#modal"}
+
+	.hosted-groups
+		%h3
+			Созданные группы
+		= render @groups
+		%p
+			.text-right
+				= button_to 'Создать группу', groups_create_new_path, class: "btn btn-success", method: :get
+	.joined-in-groups
+		%h3
+			Подписки
+		= render @joinedInGroups
+
+	.modal.fade#modal
+		.modal-dialog
+			.modal-content
+				.modal-header
+					%h4
+						Поиск групп
+				.modal-body#place-for-search
+					
+				.modal-footer#results

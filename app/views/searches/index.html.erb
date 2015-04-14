@@ -1,0 +1,23 @@
+<div class="well col-lg-12 text-center">
+
+	<%= form_for :search, remote: true, url: searches_show_path do |f| %>
+
+    	      <%= f.text_field :text, id: "field"%>
+      	  
+            <%= f.submit "Найти", :class => "btn btn-success", id: "search" %>
+
+  <% end %>
+
+</div>
+
+<div id="results" class="col-lg-12">
+
+</div>
+
+<script>
+	
+	$("#field").on("input", function(){
+		$("#search").trigger("click");
+	})
+
+</script>

@@ -1,16 +1,34 @@
 <div>
 	<% if user_signed_in? %>
-		<% @messages.each do |m| %>
-			<% if m.user_id == m.poster_id %>
-				<% if @friends.any? {|f| f.id == m.user_id} or @inverse_friends.any? {|i| i.id == m.user_id} %>
-    			<div class="col-lg-7">
-    				<h2><%= m.poster.nickname%></h2>
-    				<%= render m %>
-    			</div>
-    		<%end%>
-    	<%end%>
-    <%end%>
+        <div  class="col-lg-7">
+		  <% @messages.each do |m| %>
+		      	<% if m.user_id == m.poster_id %>
+			     	<% if @friends.any? {|f| f.id == m.user_id} or @inverse_friends.any? {|i| i.id == m.user_id} %>
+    			      	<%= render m %>
+    		        <%end%>
+    	        <%end%>
+          <%end%>
+        </div>
+        <div class="col-lg-5 text-center well">
+            <h2>Поиск пользователей</h3>
+            <%= form_for :user_search, url: user_search_create_path, method: :post do |f| %>
+
+                <p><%= f.label :search_field, "Введите никнейм"%>
+                <%= f.text_field :search_field%></p>
+
+                <%= f.submit "Найти", :class => "btn btn-success" %>
+            <% end %>
+        </p><%= button_to "Extended", searches_index_path, class: "btn btn-success", method: :get %>
+        </div>
+
+        <div class="col-lg-5 well text-center" >
+            <p/><h2>Хэштеги</h2>
+            <h3><%= render '/hashtags/hashtag' %></h3>
+        </div>
 	<% else %>
-    <span><h2>Пожалуйста, войдите или зарегистрируйтесь.</span>
+        <div class="well pull-center text-center">
+            <span><h2>Пожалуйста, войдите или зарегистрируйтесь.</span>
+        </div>
 	<% end %>
 </div>
+

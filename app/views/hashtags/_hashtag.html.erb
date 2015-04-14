@@ -1,0 +1,4 @@
+<% hashtags = SimpleHashtag::Hashtag.all %>
+<% hashtags.each do |h| %>
+	<p><%= link_to h.name, hashtag_path(h.name) %></p> 
+<% end %>

@@ -1,0 +1,1 @@
+$("#like_<%=@like.liked_message.id%>").html("<%=j render partial: '/likes/like', locals: {user_message: @like.liked_message}%>");

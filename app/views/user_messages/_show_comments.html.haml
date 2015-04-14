@@ -1,0 +1,21 @@
+.comments{id: "comments_#{commented_message_id}"}
+	- if comments != nil
+		- comments.each do |c|
+			.container.comment
+				.col-lg-2.text-center.user-info-in-comment
+					= image_tag c.poster.avatar.url(:little), class: "user-avatar"
+					= link_to c.poster.nickname, "/users/index/#{c.poster.id}"
+				.col-lg-10.comment-text
+					= c.text
+%div
+	= form_for :comment, remote: true, url: user_messages_create_comment_path(commented_message_id: commented_message_id), :html => { :multipart => true }, method: :post do |f|
+		
+		= f.text_area :text , style: "width: 473px; height: 75px"
+		= f.label :picture, "Прикрепить изображение", :for => "comment_picture", :class => "btn btn-attach btn-sm"
+		= f.file_field :picture, style: "display: none"
+		= f.hidden_field :poster_id, value: current_user.id
+
+		= f.submit "Создать", :class => "btn btn-success btn-sm" 
+%p
+	.text-center
+		= link_to "Скрыть комментарии", user_messages_close_comments_path(commented_message_id: commented_message_id), remote: true
