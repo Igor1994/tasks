@@ -34,23 +34,32 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand{:href => "http://localhost:3000/"} Домашняя страница
+        %a.navbar-brand{:href => "http://localhost:3000/"} SocialNetwork
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav{:style => "float: right"}
             - if user_signed_in?
+              %li#header-search-form
+                / = link_to 'Поиск', searches_index_path
+                = form_for :search, url: searches_export_value_path do |f|
+                  = f.text_field :text
+                  = f.submit "Найти", :class => "btn btn-success header-font-color"
               %li
-                = link_to 'Моя страница ' + '(' + current_user.nickname + ')', user_root_path
+                = link_to 'Моя страница' + '(' + current_user.nickname + ')', user_root_path
               %li
-                = link_to 'Выйти', destroy_user_session_path, :method => :delete
-              %li
-                = link_to 'Назад', :back
+                = link_to 'Выйти', destroy_user_session_path, :method => :delete   
             - else
-              %li
-                = link_to 'Войти', new_user_session_path
-              %li
-                = link_to 'Зарегистрироваться', new_user_registration_path
-              %li
-                = link_to 'Назад', :back
+              - if current_user_fb != nil
+                %li
+                  = link_to "Sign out", signout_path, id: "sign_out"
+              - else
+                %li
+                  = link_to 'Войти', new_user_session_path
+                %li
+                  = link_to 'Зарегистрироваться', new_user_registration_path
+                %li
+                  = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
+                .fb-like{"data-share" => "true", "data-show-faces" => "true", "data-width" => "450"}
+
     .container
       .row
         .col-lg-13

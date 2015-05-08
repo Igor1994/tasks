@@ -45,6 +45,10 @@ gem "haml-rails", "~> 0.9"
 gem 'jquery-ui-rails'
 gem 'jquery-modal-rails'
 
+gem 'jcrop-rails-v2'
+
+gem 'papercrop'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

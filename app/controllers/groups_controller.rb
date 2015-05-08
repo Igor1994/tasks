@@ -21,9 +21,15 @@ class GroupsController < ApplicationController
 
   end
 
+  def post_create
+    @message = current_user.posted_messages.create(message_params)
+  end
+
   def show
 
     @group = Group.find(params[:id])
+
+    # binding.pry
     
   end
 
@@ -60,6 +66,12 @@ class GroupsController < ApplicationController
 
       params.require(:search).permit(:text)
 
+    end
+
+    def message_params
+
+      params.require(:user_message).permit(:text, :picture, :group_id)
+      
     end
 
 end

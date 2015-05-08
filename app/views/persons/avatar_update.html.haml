@@ -1,0 +1,17 @@
+%body
+
+	= form_for :avatar, url: persons_update_path, remote: true, method: :put, :html => { :multipart => true } do |f|
+		.well
+			%p/
+			%div
+				= f.label :avatar, "Обзор", :for => "avatar-field", :class => "btn btn-info"
+				= f.file_field :avatar, :style => "display: none", id: "avatar-field"
+			%p/
+			%div= f.submit "Изменить", :class => "btn btn-success"
+
+	.modal.fade#modal
+		.modal-dialog
+			.modal-content
+				.modal-header
+					%h4 Обрезать аватар
+				.modal-body#place-for-form

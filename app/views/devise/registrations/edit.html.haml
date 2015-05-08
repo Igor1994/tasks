@@ -1,0 +1,36 @@
+%h2 Изменение пароля
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = devise_error_messages!
+  .well
+    %div
+      = f.label :email
+      %br/
+      = f.email_field :email, autofocus: true
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %div
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+    %p
+    %div
+      = f.label :password, "Новый пароль"
+      %i (оставьте поле пустым если хотите оставить текущий пароль)
+      %br/
+      = f.password_field :password, autocomplete: "off"
+    %p
+    %div
+      = f.label :password_confirmation, "Подтвердите новый пароль"
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "off"
+    %p
+    %div
+      = f.label :current_password, "Введите текущий пароль"
+      %i (нам нужен Ваш текущий пароль для потверждения операции)
+      %br/
+      = f.password_field :current_password, autocomplete: "off"
+    %p
+    %div= f.submit "Обновить", :class => "btn btn-large btn-warning"
+    .nav.nav-pills
+      %li
+        = link_to "Назад", :back
+%h3 Удалить мой аккаунт
+%p
+  Разочарованы? :(#{button_to "Удалить мой аккаунт", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete, :class => "btn btn-large btn-danger"}

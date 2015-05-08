@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
 
+  post 'groups/post_create'
+
+  post 'persons/crop_image'
+
+  match 'auth/facebook/callback', via: [:get, :post], to: 'sessions#create'
+  match 'auth/failure', via: [:get], to: redirect('/')
+  match 'signout', via: [:delete, :get], to: 'sessions#destroy', as: 'signout'
+
+  post 'friends/accept_friendship'
+
+  get 'friends/index'
+
+  post 'searches/export_value'
+
+  get 'persons/change_dossier'
+
+  put 'persons/update_dossier'
+
   post 'user_messages/create_comment'
 
   get 'user_messages/show_comments'
@@ -55,7 +73,7 @@ Rails.application.routes.draw do
 
   post 'user_messages/create'
 
-  get 'users/index/:id', to: 'users#index', as: 'user'  
+  match 'users/index/:id', via: [:get, :patch], to: 'users#index', as: 'user'  
 
   post 'users/change_page'
 

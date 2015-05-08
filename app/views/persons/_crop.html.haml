@@ -1,0 +1,5 @@
+= form_for current_user, url: persons_crop_image_path, method: :post do |f|
+	= f.cropbox :avatar, width: 500
+	= f.crop_preview :avatar, width: 100
+	%div{style: "text-align: center;"}
+		= f.submit 'Save', class: "btn btn-attach", style: "margin-top: 10px"

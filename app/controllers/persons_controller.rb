@@ -7,6 +7,8 @@ class PersonsController < ApplicationController
     @friendships = current_user.friendships
     @inverse_friendships = current_user.inverse_friendships
 
+    # binding.pry
+
   end
 
   # def create
@@ -19,8 +21,14 @@ class PersonsController < ApplicationController
   def update
     current_user.update(avatar_params)
 
-    redirect_to :user_root
   end
+
+  def crop_image
+    current_user.update(params[:user].permit!)
+
+    redirect_to '/persons/profile'
+  end
+
 
   def avatar_update
     
@@ -40,6 +48,18 @@ class PersonsController < ApplicationController
 
   end
 
+  def change_dossier
+    
+  end
+
+  def update_dossier
+
+    current_user.update(dossier_params)
+
+    redirect_to "/persons/profile"
+
+  end
+
   def set_page_number
 
     current_user.page_number = 1
@@ -56,4 +76,8 @@ class PersonsController < ApplicationController
   	def message_params
   		params.require(:message).permit(:text, :picture)
   	end
+
+    def dossier_params
+      params.require(:user).permit(:current_town, :mobile_number, :family_status, :interests)
+    end
 end

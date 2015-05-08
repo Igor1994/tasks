@@ -1,0 +1,24 @@
+#dossier-form
+  = form_for current_user, url: persons_update_dossier_path, method: :put do |f|
+    .container.inherit-width
+      .col-lg-3
+        = f.label :current_town, "Город"
+      .col-lg-9
+        = f.text_field :current_town
+    .container.inherit-width
+      .col-lg-3
+        = f.label :mobile_number, "Номер моб. телефона"
+      .col-lg-9
+        = f.text_field :mobile_number
+    .container.inherit-width
+      .col-lg-3
+        = f.label :family_status, "Семейный статус"
+      .col-lg-9
+        = f.text_field :family_status
+    .container.inherit-width
+      .col-lg-3
+        = f.label :interests, "Интересы"
+      .col-lg-9
+        = f.text_area :interests,  :style => "width: 100%; height: 100px"
+    %p
+      = f.submit "Сохранить", :class => "btn btn-attach btn-sm btn-block"

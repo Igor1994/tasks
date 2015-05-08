@@ -15,4 +15,6 @@ class UserMessage < ActiveRecord::Base
 
   	has_many :comments, class_name: "UserMessage", foreign_key: :commented_message_id
   	belongs_to :commented_message, class_name: "UserMessage"
+
+    belongs_to :group
 end

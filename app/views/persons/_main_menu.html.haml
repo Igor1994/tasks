@@ -1,7 +1,11 @@
 .col-lg-2.return-to-top
 	.text-center#click-to-return
-		%h3
+		%h3 Up
 .col-lg-2.main-menu-field
 	.main-menu
 		%p
+			= link_to 'Моя страница', user_root_path, class: "menu-link"
+		%p
 			= link_to "Мои группы", groups_index_path, class: "menu-link"
+		%p
+			= link_to 'Мои друзья', friends_index_path, class: "menu-link"

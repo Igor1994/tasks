@@ -10,5 +10,21 @@
 						= button_to 'Присоединиться', group_memberships_create_path(id: @group), method: :post, class: "btn btn-success btn-sm"
 					- else
 						= button_to 'Покинуть сообщество', group_memberships_destroy_path(id: @group.id), method: :delete, class: "btn btn-success btn-sm"
-		%h4
-			= @group.description
+		%h5
+			= @group.description 
+	.group-posts
+		.create-message-form
+			= form_for @group.posts.new, remote: true, url: groups_post_create_path, :html => { :multipart => true }, method: :post do |f|
+				%p
+				%div
+					= f.text_area :text , :style => "width: 850px; height: 100px"
+				%p
+					= f.label :picture, "Прикрепить изображение", :for => "user_message_picture", :class => "btn btn-attach"
+					= f.file_field :picture, style: "display: none"
+				= f.hidden_field :group_id
+				%div
+					= f.submit "Создать", :class => "btn btn-success"  
+		#show-create-message-form.text-center
+			%h4 Создать сообщение
+	#wall{"style" => "margin-top: 20px;"}
+		= render @group.posts.reverse_order

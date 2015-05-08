@@ -1,0 +1,105 @@
+%body
+  = render '/persons/main_menu'
+  .container.col-lg-10.pull-right
+    .row
+      .col-lg-4
+        .text-center
+          - if current_user.avatar_file_size != nil
+            = image_tag current_user.avatar.url(:thumb), class: "user-avatar"
+          %h1
+            = current_user.nickname
+            .btn-group
+              %a.btn.btn-sm.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Действия
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to 'Изменить пароль', edit_user_registration_path, method: :get
+                %li= link_to 'Изменить аватар', persons_avatar_update_path, method: :get
+                %li= link_to 'Выйти', destroy_user_session_path, method: :delete
+          .pull-center{:hidden => ""}
+            / %h3 Друзья
+            / .row
+            /   .col-md-6
+            /     %table.table.table-striped
+            /       %tr
+            /         %td
+            /           %h4 Вы добавили
+            /       - @friendships.each do |f|
+            /         %tr
+            /           %td
+            /             %h4
+            /               = link_to f.friend.nickname, "/users/index/#{f.friend.id}"
+            /               = link_to (image_tag "red_cross.png", alt: "Ups", size: "10x10"), friendships_destroy_path(id: f), method: :delete
+            /   .col-lg-6
+            /     %table.table.table-striped
+            /       %tr
+            /         %td
+            /           %h4 Вас добавили
+            /       - @inverse_friendships.each do |f|
+            /         %tr
+            /           %td
+            /             %h4
+            /               = link_to f.user.nickname, "/users/index/#{f.user.id}"
+            /               = link_to (image_tag "red_cross.png", alt: "Ups", size: "10x10"), friendships_destroy_path(id: f), method: :delete
+      .col-lg-8.pull-right
+        .personal-info.well
+          %h4#personal-info-header Досье
+          .container.inherit-width
+            .col-lg-4
+              %h5 Город
+            .col-lg-8
+              = current_user.current_town
+          .container.inherit-width
+            .col-lg-4
+              %h5 Номер моб. телефона
+            .col-lg-8
+              = current_user.mobile_number
+          .container.inherit-width
+            .col-lg-4
+              %h5 Семейный статус
+            .col-lg-8
+              = current_user.family_status
+          .container.inherit-width
+            .col-lg-4
+              %h5 Интересы
+            .col-lg-8
+              = current_user.interests
+          #personal-info-change.container.inherit-width.text-right
+            = link_to "Редактировать", persons_change_dossier_path, remote: true, method: :get, data: {toggle: "modal", target: "#modal"}
+
+        .border
+        
+        .create-message-form
+          = form_for current_user.user_messages.new, remote: true, url: user_user_messages_path(current_user), :html => { :multipart => true }, method: :post do |f|
+            %p
+            %div
+              = f.text_area :text , :style => "width: 620px; height: 100px"
+            %p
+              = f.label :picture, "Прикрепить изображение", :for => "user_message_picture", :class => "btn btn-attach"
+              = f.file_field :picture, style: "display: none"
+            = f.hidden_field :user_id
+            %div
+              = f.submit "Создать", :class => "btn btn-success"
+        
+        #show-create-message-form.text-center
+          %h4 Создать сообщение
+      
+      #wall.col-lg-8.pull-right
+        - if current_user.user_messages.first.id != nil
+          = render current_user.user_messages.reverse_order.first
+          = render partial: 'person', locals: {page: 1}
+      
+      .col-lg-8.pull-right.text-center
+        = link_to "next", persons_change_page_path, remote: true, method: :post, id: "page"
+    
+    %p
+
+  .modal.fade#modal
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h4
+            Редактировать досье
+        .modal-body#place-for-form
+
+    

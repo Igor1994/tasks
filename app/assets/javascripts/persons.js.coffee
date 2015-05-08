@@ -11,7 +11,11 @@ ready = ->
 	  $(window).scrollTop 0
 	  $('.return-to-top').hide()
 	  return
-	return
+  $("#show-create-message-form").click ->
+    $("#show-create-message-form").hide()
+    $(".create-message-form").slideDown("slow")
+    return
+  return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

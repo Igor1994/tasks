@@ -9,17 +9,7 @@
     	        <%end%>
           <%end%>
         </div>
-        <div class="col-lg-5 text-center well">
-            <h2>Поиск пользователей</h3>
-            <%= form_for :user_search, url: user_search_create_path, method: :post do |f| %>
-
-                <p><%= f.label :search_field, "Введите никнейм"%>
-                <%= f.text_field :search_field%></p>
-
-                <%= f.submit "Найти", :class => "btn btn-success" %>
-            <% end %>
-        </p><%= button_to "Extended", searches_index_path, class: "btn btn-success", method: :get %>
-        </div>
+        
 
         <div class="col-lg-5 well text-center" >
             <p/><h2>Хэштеги</h2>

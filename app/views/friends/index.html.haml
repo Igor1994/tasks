@@ -1,0 +1,19 @@
+= render '/persons/main_menu'
+.container.col-lg-9.pull-right
+	%h4 Друзья
+	.friends-show
+		- @friends.each do |f|
+			.well.single-friend-show{id: "friend_#{f.id}"}
+				%h3 
+					= image_tag f.avatar.url(:little), class: "user-avatar"
+					= link_to f.nickname, "/users/index/#{f.id}", class: "margin-left-20"
+	%h4 Подписчики
+	.subscribers-show
+		- @subscribers.each do |s|
+			- if current_user.friends.all? {|f| f.id != s.id}
+				.well.single-friend-show{id: "subscriber_#{s.id}"}
+					%h3 
+						= image_tag s.avatar.url(:little), class: "user-avatar"
+						= link_to s.nickname, "/users/index/#{s.id}", class: "margin-left-20"
+						%h5
+							= link_to "Подтвердить дружбу", friends_accept_friendship_path(id: s), method: :post

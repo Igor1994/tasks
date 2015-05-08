@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require jquery.remotipart
+//= require jquery.jcrop
+//= require papercrop
 //= require_tree .

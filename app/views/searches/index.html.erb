@@ -1,21 +1,31 @@
-<div class="well col-lg-12 text-center">
+<%= render '/persons/main_menu' %>
+<div class="col-lg-9 text-center pull-right">
 
-	<%= form_for :search, remote: true, url: searches_show_path do |f| %>
+	<div class="well">
 
-    	      <%= f.text_field :text, id: "field"%>
-      	  
-            <%= f.submit "Найти", :class => "btn btn-success", id: "search" %>
+		<%= form_for :search, remote: true, url: searches_show_path do |f| %>
 
-  <% end %>
+	    	      <%= f.text_field :text, id: "field", value: flash[:search]%>
+	      	  
+	            <%= f.submit "Найти", :class => "btn btn-success", id: "search" %>
+
+	  <% end %>
+
+	</div>
+
+	<div id="results">
+
+	</div>
 
 </div>
 
-<div id="results" class="col-lg-12">
-
-</div>
 
 <script>
 	
+	$(document).ready(function(){
+		$("#search").trigger("click");
+	})
+
 	$("#field").on("input", function(){
 		$("#search").trigger("click");
 	})

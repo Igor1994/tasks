@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410060550) do
+ActiveRecord::Schema.define(version: 20150501131332) do
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150410060550) do
     t.integer  "user_id"
     t.integer  "poster_id"
     t.integer  "commented_message_id"
+    t.integer  "group_id"
   end
 
   create_table "users", force: true do |t|
@@ -104,6 +105,8 @@ ActiveRecord::Schema.define(version: 20150410060550) do
     t.string   "mobile_number"
     t.string   "family_status"
     t.string   "interests"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
